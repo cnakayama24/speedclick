@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<title>
+Click Counter
+</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ranchers&display=swap');
+
+    body {
+        background-image: url(https://i.pinimg.com/originals/bf/8e/8f/bf8e8f8853bbe3fc87d6a376f5844254.jpg);
+        background-size: cover;
+        color: yellow;
+        font-family: 'Bebas Neue', cursive;
+        font-weight: 100;
+        font-size: 24px
+    }
+    button{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        border: none;
+    }
+    input{
+        font-family: 'Bebas Neue', cursive;
+        border: none;
+    }
+    @media only screen and (max-width: 810px)
+    {
+        body {
+        background-image: url(https://i.pinimg.com/originals/bf/8e/8f/bf8e8f8853bbe3fc87d6a376f5844254.jpg);
+        background-size: stretch;
+        color: yellow;
+        font-family: 'Bebas Neue', cursive;
+        font-weight: 100;
+        font-size: 25px;
+    }
+    button{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        border: none;
+    }
+    input{
+        font-family: 'Bebas Neue', cursive;
+        border: none;}
+    }
+
+</style>    
+
+<body>
+<center>
+<main style = "background: rgba(0, 0, 0, 0.7);
+; width: 350px; height: 400px; border-radius: 50px;">
+<h1 style = "margin-top: 190px; padding-top: 20px"> 
+Click Speed Test
+</h1>  
+
+<button style = "background-color:transparent;" id = "counter" onclick="clickMe()">
+<img  style = "border-none; height: 100px; width: 100px;" src = " https://i.pinimg.com/originals/17/13/23/171323d11a00e352acbbb54d35038847.gif">
+</button>
+<div style = "margin-bottom: -6px; font-size: 20px">
+click me
+</div>
+<h4 style = "display: inline-flex;">
+<div id = "total">Clicks:</div>
+<div>
+&ensp;    
+</div>
+<div id ="score">0</div>
+<div>
+&ensp;
+</div>
+<div>
+Time:&ensp;   
+</div>
+<div id = "seconds" >
+0
+</div>
+&ensp; High Score:&ensp;
+<div id = "bestScore"> 
+0
+</div>
+</h4>    
+<br>
+<div style = "margin-top: -20px">
+<input id = "userInputValue" type = "number" placeholder=" Time" style = "width: 80px; font-size: 20px; border-radius: 10px">
+<button  onclick="setTimerValue()" style="margin-bottom: 10px; background-color: white; border-radius: 100px">
+Set Time
+</button>
+<br>
+<button id = "start" onClick = "start()" style="background-color: white; border-radius: 100px">
+Start
+</button>
+
+</div>
+
+    
+
+
+
+</main>
+
+</center>
+</body>
+
+    
+    
+<script>
+var counter = 0;
+var bestScore = 0;
+var userInput = 0;
+var hasClicked = false;
+function setTimerValue (){
+ userInput = document.getElementById("userInputValue").value;
+ counter = 0;
+ document.getElementById("score").innerHTML = counter;
+ totalSeconds = userInput;
+}
+
+function clickMe (){
+if (totalSeconds != 0 && hasClicked == true){
+   counter ++;
+}
+document.getElementById("score").innerHTML = counter; 
+}   
+function reset(){
+    counter = 0;
+    userInput = document.getElementById("userInputValue").value;
+    totalSeconds = userInput;
+    document.getElementById("seconds").innerHTML = totalSeconds;
+    document.getElementById("score").innerHTML = counter;
+}
+    
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+setInterval(setTime, 1200);
+
+function start(){
+    hasClicked = true;
+}
+
+function setTime() {
+    if (userInput != 0 && totalSeconds != 0){
+        document.getElementById("seconds").innerHTML = userInput;
+   if(hasClicked == true){
+       if (totalSeconds != 0){
+     --totalSeconds;
+     secondsLabel.innerHTML = pad(totalSeconds % 60);
+           if(counter > bestScore){
+        bestScore = counter;
+        document.getElementById("bestScore").innerHTML = bestScore;
+    }
+  }
+      }
+if (totalSeconds == 0){
+    hasClicked = false;
+}
+     if (totalSeconds == 0){
+    counter = 0;
+    userInput = document.getElementById("userInputValue").value;
+    document.getElementById("seconds").innerHTML =totalSeconds;
+    document.getElementById("score").innerHTML = counter;
+        }
+}
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return valString;
+  } else {
+    return valString;
+  }
+}
+</script>
+  
+</html>
